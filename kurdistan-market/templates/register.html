@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}تۆمارکردنی فرۆشگا{% endblock %}
+{% block content %}
+
+<div class="auth-wrap">
+  <div class="card auth-card">
+    <h2>فۆرمی خۆتۆمارکردنی پێشانگا و کۆمپانیا</h2>
+    <form method="post" action="{{ url_for('register') }}">
+      <label>ناوی فرۆشگا / پێشانگا / کۆمپانیا <span class="req">*</span></label>
+      <input type="text" name="name" required>
+
+      <label>ژمارەی پەیوەندی <span class="req">*</span></label>
+      <input type="text" name="phone" required dir="ltr">
+
+      <label>ئیمەیڵ</label>
+      <input type="email" name="email">
+
+      <label>کەتەگۆری کاڵا</label>
+      <select name="category">
+        <option value="ئەلکترۆنیات">ئەلکترۆنیات</option>
+        <option value="کارەباییات">کارەباییات</option>
+        <option value="بیناسازی">بیناسازی</option>
+        <option value="کەلوپەل">کەلوپەل</option>
+      </select>
+
+      <label>ناونیشان</label>
+      <input type="text" name="address">
+
+      <label>وشەی تێپەڕ (Password) <span class="req">*</span></label>
+      <input type="password" name="password" required autocomplete="new-password">
+
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:16px;">تۆمارکردن</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

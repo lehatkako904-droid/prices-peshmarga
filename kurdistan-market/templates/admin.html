@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}داشبۆردی بەڕێوەبەر{% endblock %}
+{% block content %}
+
+<h1>داشبۆردی بەڕێوەبەر</h1>
+
+<div class="stats">
+  <div class="stat-card"><span class="stat-num">{{ stats.shops }}</span><span>فرۆشگا</span></div>
+  <div class="stat-card"><span class="stat-num">{{ stats.products }}</span><span>کاڵا</span></div>
+  <div class="stat-card"><span class="stat-num">{{ stats.users }}</span><span>بەکارهێنەر</span></div>
+</div>
+
+<div class="toolbar">
+  <a href="{{ url_for('admin_compare') }}" class="btn btn-primary">بەراوردکردنی نرخەکان (کەمترین / زۆرترین)</a>
+</div>
+
+<div class="card">
+  <h2>هەموو فرۆشگاکان</h2>
+  {% if shops %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>ناوی فرۆشگا</th>
+        <th>پێشانگا</th>
+        <th>کۆمپانیا</th>
+        <th>ژمارەی پەیوەندی</th>
+        <th>ئیمەیل</th>
+        <th>کتێگۆری</th>
+        <th>ژ. کاڵا</th>
+        <th>کردار</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in shops %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ s.shop_name }}</td>
+        <td>{{ s.showroom or '-' }}</td>
+        <td>{{ s.company or '-' }}</td>
+        <td dir="ltr">{{ s.phone or '-' }}</td>
+        <td dir="ltr">{{ s.email or '-' }}</td>
+        <td>{{ category_labels.get(s.category, s.category or '-') }}</td>
+        <td>{{ s.product_count }}</td>
+        <td><a href="{{ url_for('admin_shop', sid=s.id) }}" class="btn btn-small">بینین / نوێکردنەوە</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="muted">هێشتا هیچ فرۆشگایەک تۆمارنەکراوە.</p>
+  {% endif %}
+</div>
+
+{% endblock %}
